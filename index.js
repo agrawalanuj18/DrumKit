@@ -3,13 +3,22 @@ let numberOfDrum = document.querySelectorAll(".drum").length;
 for (let i = 0; i < numberOfDrum; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function () {
     var buttonPressed = this.innerHTML;
-    makeSound(buttonPressed)
+    makeSound(buttonPressed);
+    addAnimation(buttonPressed);
   });
 }
 
 document.addEventListener("keydown", function(event){
     makeSound(event.key);
+    addAnimation(event.key);
 });
+
+function addAnimation(currentKey){
+document.querySelector("." + currentKey).classList.add("pressed");
+setTimeout(function(){
+  document.querySelector("." + currentKey).classList.remove("pressed");
+}, 100)
+}
 
 function makeSound(key){
   switch (key) {
